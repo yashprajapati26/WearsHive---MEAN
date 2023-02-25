@@ -36,7 +36,6 @@ router.get('/searchuser/:key', usersController.searchUser);
 
 
 // auth routes
-router.get('/', authController.getLogin);
 router.post('/login', authController.postLogin);
 router.post('/signup', authController.postSignup);
 router.get('/logout', authController.logout);
@@ -51,7 +50,7 @@ router.get('/getsubcategorys', categoryController.getSubCategorys)
 router.get('/getproduct/:id', productController.getSingleProduct);
 router.post('/createproduct', upload.single('image'), productController.createProduct);
 router.get('/shop/:page?/:pageSize?', productController.getProducts);
-router.post('/editproduct/:id', verifyToken, productController.updateProduct);
+router.post('/editproduct/:id', upload.single('image'), productController.updateProduct);
 router.get('/deleteProduct/:id', verifyToken, productController.deleteProduct);
 
 

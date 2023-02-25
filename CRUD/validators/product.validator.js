@@ -6,7 +6,7 @@ const validation = joi.object({
     qty : joi.number().required(),
     category : joi.required(),
     image : joi.required(),
-    detailUrl : joi.min(5).max(500).required()
+    detailUrl : joi.string().min(5).max(500).required()
 })
 
 module.exports = {validation}

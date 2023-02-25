@@ -35,6 +35,7 @@ export class AddProductComponent {
   productForm = new FormGroup({
     title: new FormControl("", Validators.required),
     price: new FormControl("", [Validators.required, Validators.pattern("^[0-9]*$")]),
+    qty : new FormControl("",Validators.required),
     category: new FormControl("", Validators.required),
     image: new FormControl(""),
     detailUrl: new FormControl("", [Validators.required, Validators.minLength(10)])
@@ -49,11 +50,12 @@ export class AddProductComponent {
       this.productservice.getProduct(this.id)
         .pipe(first())
         .subscribe((res: any) => {
-          console.log(res['product'])
+          console.log(res)
           this.productForm.patchValue({
             title: res['product'].title,
             price: res['product'].price,
-            category: res['product'].category,
+            qty: res['product'].qty,
+            category: res['product'].category.SubCategoryName,
             detailUrl: res['product'].detailUrl,
             image : res['product'].image  
           })
@@ -70,6 +72,7 @@ export class AddProductComponent {
 
         this.formData.append('title', data['title']);
         this.formData.append('price', data['price']);
+        this.formData.append('qty', data['qty']);
         this.formData.append('category', data['category']);
         this.formData.append('detailUrl', data['detailUrl']);
         this.formData.append('image', this.file);

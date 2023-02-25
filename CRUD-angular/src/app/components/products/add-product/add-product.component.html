@@ -35,6 +35,15 @@
             </div>
           </div>
         </div>
+
+        <div class="mb-3">
+          <label class="form-label">Quantity</label>
+          <input type="text" class="form-control" id="exampleInputqty" aria-describedby="emailHelp" name="qty"
+            formControlName="qty">
+          <div *ngIf="isSubmitted && f.qty.errors" id="emailHelp" class="form-text text-danger">Quantity is required*
+          </div>
+        </div>
+
         <div class="mb-3">
           <label class="form-label">Category</label>
           <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="category"

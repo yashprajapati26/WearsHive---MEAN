@@ -1,10 +1,31 @@
 const ProductModel = require("../models/product.model");
 const mongoType = require('mongoose').Types;
+const productValidator = require("../validators/product.validator");
 
 const createProduct = async (req, res) => {
     try {
         console.log(req.body)
         console.log(req.file)
+
+        const payload = {
+            title: req.body.title,
+            price: req.body.price,
+            qty: req.body.qty,
+            category: req.body.category,
+            image: {
+                data: req.file.path,
+                path: req.file.path,
+                contentType: req.file.mimetype
+            },
+            detailUrl: req.body.detailUrl
+        };
+
+        const { error } = productValidator.validation.validateAsync(payload);
+
+        if (error) {
+            res.status(406);
+            return res.json({msg:'please enter validate data'})
+        } 
 
         let product = new ProductModel({
             title: req.body.title,
@@ -41,7 +62,7 @@ const getProducts = async (req, res) => {
 
         console.log("L:S", limitValue, skipValue)
 
-        let products = await ProductModel.find().limit(limitValue).skip(skipValue)
+        let products = await ProductModel.find().limit(limitValue).skip(skipValue).populate('category')
         let data = {
             products: products,
             totalData: products.length,
@@ -62,7 +83,7 @@ const getProducts = async (req, res) => {
 const getSingleProduct = async (req, res) => {
     try {
         if (mongoType.ObjectId.isValid(req.params.id)) {
-            product = await ProductModel.findById(req.params.id)
+            product = await ProductModel.findById(req.params.id).populate('category')
             let data = {
                 product: product,
                 status: "success"
@@ -85,12 +106,13 @@ const updateProduct = async (req, res) => {
         let product = {
             title: req.body.title,
             price: req.body.price,
+            qty: req.body.qty,
             category: req.body.category,
             detailUrl: req.body.detailUrl
         };
 
         if (mongoType.ObjectId.isValid(req.params.id)) {
-            if (product.title != "" && product.price != "" && product.category != "" && product.detailUrl != "") {
+            if (product.title != "" && product.price != "" && product.category != "" && product.detailUrl != "" && product.qty != "") {
                 await ProductModel.findByIdAndUpdate(req.params.id, {
                     $set: product
                 });

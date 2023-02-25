@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const UserModel = require("../models/user.model");
 const mongoType = require('mongoose').Types;
+const bcrypt = require('bcrypt')
 
 const getSingleUser = async (req, res) => {
     try {
@@ -54,7 +55,7 @@ const createUser = async (req, res) => {
             name: req.body.name,
             email: req.body.email,
             mobile: req.body.mobile,
-            password: req.body.password,
+            password: await bcrypt.hash(req.body.password,10),
             token: "",
             usertype: "customer"
         })

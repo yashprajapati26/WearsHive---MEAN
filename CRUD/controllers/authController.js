@@ -3,14 +3,9 @@ const UserModel = require("../models/user.model");
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.model');
 const localStorage = require("localStorage")
+const bcrypt = require('bcrypt')
 let jwtSecretKey = process.env.ACCESS_TOKEN_SECRET
 
-const getLogin = (req, res) => {
-    data = {
-        "msg": ""
-    }
-    res.status(200).render('../templates/login', data)
-}
 
 const postLogin = async (req, res) => {
     try {
@@ -18,53 +13,26 @@ const postLogin = async (req, res) => {
         let pass = req.body.password
 
         if (!(email && pass)) {
-
-            data = {
-                "msg": "All field required"
-            }
-            // res.status(400).render('../templates/login', data)
-            res.status(400).json(data)
+            res.status(400).json({msg:"All field required"})
             return;
         }
 
         let user = await UserModel.findOne({
-            email: email,
-            password: pass
+            email: email
         }).exec();
+
         let isAdmin = false
-        if (user) {
-
-            const token = jwt.sign({
-                user_id: user._id,
-                email
-            }, jwtSecretKey, {
-                expiresIn: "2h"
-            })
-
-            // save user token in cookies
-            // res.cookie("token", token, {
-            //     maxAge: 2629800000,
-            //     httpOnly: true,
-            // });
-
-            // save token in header 
-            // res.header('Authorization', token);
-
-            // store into database 
-            // user.token = token;
-            // user.save()
-            if (user.usertype) {
-                console.log("user...")
-
-                if (user.usertype == "admin") {
-                    console.log("admin...")
-                    isAdmin = true
-                }
-            }
-
-
+        
+        if (await bcrypt.compare(pass, user.password)) {
+            const token = jwt.sign({user_id: user._id,email}, jwtSecretKey, {expiresIn: "2h"})
+            
             // save user token in localstorage
+
             localStorage.setItem('token', token)
+
+            if (user.usertype) {
+                if (user.usertype == "admin") isAdmin = true    
+            }
 
             data = {
                 "msg": "Login Sucessfully",
@@ -72,14 +40,11 @@ const postLogin = async (req, res) => {
                 "isLogin": true,
                 "isAdmin": isAdmin
             }
-
-            // res.status(200).redirect('/home')
-            res.status(200).json(data)
-        } else {
-            data = {
-                "msg": "Please enter correct email and password !!"
-            }
-            // res.status(200).render('../templates/login', data)
+            return res.status(200).json(data)
+        
+        } 
+        else {
+            data = {"msg": "Please enter correct email and password !!"}
             res.status(401).json(data)
         }
 
@@ -89,7 +54,6 @@ const postLogin = async (req, res) => {
             "msg": "Something is Wrong! Please try again.",
             "error": e.error
         }
-        // res.status(500).render('../templates/login', data)
         res.status(500).json(data)
         return;
     }
@@ -147,12 +111,12 @@ const logout = async (req, res) => {
     console.log(token)
     if (token) {
         const verifyToken = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET)
-        // const userInfo = await User.findOne({ _id: verifyToken.user_id })
 
         //remove from local storage  
         localStorage.removeItem("token")
 
         //delete token from database
+        // const userInfo = await User.findOne({ _id: verifyToken.user_id })
         // if (userInfo.token) {
         //     userInfo.token = null
         //     await userInfo.save();
@@ -164,7 +128,6 @@ const logout = async (req, res) => {
         //delete token from header 
         // res.removeHeader('Authorization');
 
-        // res.redirect("/")
         res.status(200).json({
             "msg": "logout sucessfully"
         })
@@ -178,7 +141,6 @@ const logout = async (req, res) => {
 }
 
 module.exports = {
-    getLogin,
     postLogin,
     logout,
     postSignup

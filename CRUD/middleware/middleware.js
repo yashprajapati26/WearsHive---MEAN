@@ -9,7 +9,7 @@ const verifyToken = (req, res, next) => {
     let token = req.body.token || req.query.token  || req.cookies.token || req.headers['authorization'] || localStorage.getItem('token');
 
     // we need to check only localstorage
-    token = localStorage.getItem('token')
+    token = localStorage.getItem("token")
 
     console.log("token : ",token)
 

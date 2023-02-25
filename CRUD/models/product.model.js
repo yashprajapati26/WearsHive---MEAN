@@ -6,7 +6,7 @@ const ProductSchema = new mongoose.Schema({
         qty:{type:String},
         category:{
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'SubCatagory',
+            ref: 'SubCategory',
             required: true
         },
         image: {
