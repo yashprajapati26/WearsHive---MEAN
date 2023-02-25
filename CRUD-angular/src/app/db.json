@@ -1,0 +1,115 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Jack",
+            "mobile" : "+91 123456789",
+            "email": "acjack@gmail.com",
+            "password": "mavsdvle"
+        },
+        {
+            "id": 2,
+            "name": "Peter",
+            "mobile" : "+91 123456789",
+            "email": "apeter@gmail.com",
+            "password": "malvdsd"
+        },
+        {
+            "id": 3,
+            "name": "Mary",
+            "mobile" : "+91 123456789",
+            "email": "ssmary@gmail.com",
+            "password": "fedscmale"
+        },
+        {
+            "id": 4,
+            "name": "Smith",
+            "mobile" : "+91 123456789",
+            "email": "ccsfsmith@gmail.com",
+            "password": "mcsdcale"
+        },
+        {
+            "id": 5,
+            "name": "John",
+            "mobile" : "+91 123456789",
+            "email": "fffjohn@gmail.com",
+            "password": "mdcsdale"
+        }
+    ],
+    "products": [
+        {
+            "id":1,
+            "prodcut_name" : "phone",
+            "price": 999,
+            "description": "Dolore reprehenderit laborum consequat ad anim laborum."
+        },
+        {
+            "id":2,
+            "prodcut_name" : "TV",
+            "price": 9099,
+            "description": "Et commodo voluptate amet cupidatat minim aliqua velit reprehenderit. Qui cupidatat id consectetur deserunt sint non velit pariatur aliquip irure dolore laborum. Incididunt Lorem culpa non quis. Consequat aliqua cillum esse nisi qui. Veniam aute sunt ut commodo id aliqua. Veniam laborum do enim veniam. Est duis amet amet id nulla.."
+        },
+        {
+            "id":3,
+            "prodcut_name" : "Book",
+            "price": 399,
+            "description": "Dolore reprehenderit laborum consequat ad anim laborum."
+        },
+        {
+            "id":4,
+            "prodcut_name" : "Headphone",
+            "price": 899,
+            "description": "Et commodo voluptate amet cupidatat minim aliqua velit reprehenderit. Qui cupidatat id consectetur deserunt sint non velit pariatur aliquip irure dolore laborum. Incididunt Lorem culpa non quis. Consequat aliqua cillum esse nisi qui. Veniam aute sunt ut commodo id aliqua. Veniam laborum do enim veniam. Est duis amet amet id nulla.."
+        },
+        {
+            "id":5,
+            "prodcut_name" : "smart phone",
+            "price": 5999,
+            "description": "Dolore reprehenderit laborum consequat ad anim laborum."
+        },
+        {
+            "id":6,
+            "prodcut_name" : "LED TV",
+            "price": 19099,
+            "description": "Et commodo voluptate amet cupidatat minim aliqua velit reprehenderit. Qui cupidatat id consectetur deserunt sint non velit pariatur aliquip irure dolore laborum. Incididunt Lorem culpa non quis. Consequat aliqua cillum esse nisi qui. Veniam aute sunt ut commodo id aliqua. Veniam laborum do enim veniam. Est duis amet amet id nulla.."
+        },
+        {
+            "id":7,
+            "prodcut_name" : "E Book",
+            "price": 99,
+            "description": "Dolore reprehenderit laborum consequat ad anim laborum."
+        },
+        {
+            "id":8,
+            "prodcut_name" : "Bluetooth Headphone",
+            "price": 899,
+            "description": "Et commodo voluptate amet cupidatat minim aliqua velit reprehenderit. Qui cupidatat id consectetur deserunt sint non velit pariatur aliquip irure dolore laborum. Incididunt Lorem culpa non quis. Consequat aliqua cillum esse nisi qui. Veniam aute sunt ut commodo id aliqua. Veniam laborum do enim veniam. Est duis amet amet id nulla.."
+        },
+        {
+            "id":9,
+            "prodcut_name" : "Iphone",
+            "price": 190999,
+            "description": "Dolore reprehenderit laborum consequat ad anim laborum."
+        },
+        {
+            "id":10,
+            "prodcut_name" : "Water Bottle",
+            "price": 99,
+            "description": "Et commodo voluptate amet cupidatat minim aliqua velit reprehenderit. Qui cupidatat id consectetur deserunt sint non velit pariatur aliquip irure dolore laborum. Incididunt Lorem culpa non quis. Consequat aliqua cillum esse nisi qui. Veniam aute sunt ut commodo id aliqua. Veniam laborum do enim veniam. Est duis amet amet id nulla.."
+        },
+        {
+            "id":11,
+            "prodcut_name" : "Green Tea",
+            "price": 599,
+            "description": "Dolore reprehenderit laborum consequat ad anim laborum."
+        },
+        {
+            "id":12,
+            "prodcut_name" : "Coffee",
+            "price": 666,
+            "description": "Et commodo voluptate amet cupidatat minim aliqua velit reprehenderit. Qui cupidatat id consectetur deserunt sint non velit pariatur aliquip irure dolore laborum. Incididunt Lorem culpa non quis. Consequat aliqua cillum esse nisi qui. Veniam aute sunt ut commodo id aliqua. Veniam laborum do enim veniam. Est duis amet amet id nulla.."
+        }
+        
+    ]
+}
+

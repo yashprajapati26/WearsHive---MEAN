@@ -1,0 +1,26 @@
+<div class="container text-center align-items-center">
+    <h3 class="my-5 fw-bold">Available Products</h3>
+    <div class="row row-cols-4 mb-3">
+       
+        <div *ngFor="let product of items" class="col card mb-3 m-auto" style="width: 18rem;">
+            <img src="{{imageUrl}}/{{product.image.path}}" class="card-img-top"
+                alt="...">
+            <div class="card-body">
+                <h3 class="card-title">{{product.title}} - {{product.category}} </h3>
+                <p class="card-text text-truncate">{{product.detailUrl}}</p>
+                <h5 class="card-text">Price : {{product.price}}/-</h5>
+
+                <a routerLink="/single-product/{{product._id}}" class="btn btn-info m-1 d-block">View</a>
+                <ng-container *ngIf="isLogin">
+                    <a (click)="addToCart(product._id)" [ngClass]="CheckProduct(product._id)?'d-none':'d-block btn btn-success m-1'" id="actionBtn">Add to cart</a>                   
+                    <a (click)="removeFromCart(product._id)" [ngClass]="!CheckProduct(product._id)?'d-none':'d-block btn btn-danger m-1'" id="actionBtn">Remove</a>
+                </ng-container>
+             
+            </div>
+        </div>
+        
+    </div>
+
+    <button class="btn btn-outline-primary mb-5" (click)="getRequestParams()">Show More</button>
+
+</div>

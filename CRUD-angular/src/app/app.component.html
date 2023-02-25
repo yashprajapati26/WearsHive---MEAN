@@ -1,0 +1,7 @@
+<app-header *ngIf="!admin"></app-header>
+{{totleProducts}}
+<router-outlet (childEvent)="totleProducts=$event"></router-outlet>
+
+<app-table [users]="users" [tableColumns]="tableColumns"></app-table>
+
+<app-footer *ngIf="!admin"></app-footer>

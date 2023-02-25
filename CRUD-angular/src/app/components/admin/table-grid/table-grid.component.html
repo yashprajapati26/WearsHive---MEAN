@@ -1,0 +1,16 @@
+<div class="container tableBg">
+    <div class="table table-striped">
+      <table class="table">
+        <thead>
+          <th>No</th>
+          <th scope="col" *ngFor="let head of tableCols">{{head.Head}}</th>
+        </thead>
+        <tbody>
+          <tr scope="col" *ngFor="let data of tableData;let no=index">
+            <td>{{no+1}}</td>
+            <td *ngFor="let head of tableCols">{{data[head.Field]}}</td>
+          </tr>
+        </tbody>
+    </table>
+    </div>
+</div>

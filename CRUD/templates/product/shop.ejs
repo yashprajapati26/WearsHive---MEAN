@@ -1,0 +1,25 @@
+<%- include('../header.ejs') %>
+
+<div class="container">
+    <h3 class="my-3">Shop Page</h3>
+    <div class="row row-cols-4 my-5">
+        <% for(var i=0; i<products.length; i++) {%>
+        <div class="col card m-2 " style="width: 18rem;">
+            <img src="https://rejoiz.ug/assets/images/default_images/default-product.png" class="card-img-top"
+                alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><%= products[i].title %> - <%= products[i].category %> </h5>
+                <p class="card-text"><%= products[i].detailUrl %></p>
+                <h5 class="card-text">RS : <%= products[i].price %>/-</h5>
+                <a href="#" class="btn btn-info mx-1">View</a>
+                <a href="#" class="btn btn-primary mx-1">Add to cart</a>
+            </div>
+        </div>
+        <% } %>
+
+    </div>
+
+</div>
+
+
+<%- include('../footer.ejs') %>

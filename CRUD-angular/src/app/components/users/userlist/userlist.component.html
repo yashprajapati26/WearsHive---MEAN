@@ -1,0 +1,46 @@
+<h3 class="fw-bold m-5">User List</h3>
+
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <input type="text" class="form-control" name="search" placeholder="search.." formControlName="search">
+</form>
+
+<table id="userlist" class="table table-striped table-hover  my-5" style="width:100%">
+  <thead>
+    <tr>
+      <th (click)="sortTable('_id')">ID </th>
+      <th (click)="sortTable('name')">Name</th>
+      <th (click)="sortTable('email')">Email</th>
+      <th (click)="sortTable('mobile')">Mobile</th>
+      <th (click)="sortTable('password')">Password</th>
+      <th class="text-center">Action</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let user of users| orderBy: sortBy : asce | paginate: {
+      itemsPerPage: pageSize,
+      currentPage: page,
+      totalItems: count }">
+      <td>{{user._id }}</td>
+      <td>{{user.name}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.mobile}}</td>
+      <td>{{user.password}}</td>
+      <td class="text-center">
+        <a *ngIf="isadmin" class="btn btn-outline-primary mx-2" routerLink="/admin/edit-user/{{user._id}}">Edit</a>
+        <a *ngIf="!isadmin" class="btn btn-outline-primary mx-2" routerLink="/edit-user/{{user._id}}">Edit</a>
+        <a class="btn btn-outline-danger" (click)="deleteUser(user._id)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="d-flex">
+  <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
+  <label class="ms-5 my-2">Page Size :</label>
+  <select (change)="handlePageSizeChange($event)">
+    <option *ngFor="let size of pageSizes" [ngValue]="size">
+      {{ size }}
+    </option>
+  </select>
+</div>

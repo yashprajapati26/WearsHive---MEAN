@@ -1,0 +1,59 @@
+<%- include('header.ejs') %>
+<!-- banner -->
+<div class="container" id="banner-container">
+    <div class="row my-5">
+        <div class="col-md-6 py-5 text-center" id="banner-col">
+            <h3>
+                JUST CRUD OPERATION PERFORM BY USING NODEJS WITH EJS TEMPLATES
+            </h3>
+
+            <p>
+                The fastest way to grow your business with the leader in
+                Technology
+            </p>
+
+            <div class="d-grid gap-2 d-md-flex justify-content-center">
+                <a class="btn btn-primary" href="/" role="button">Get Into Touch</a>
+            </div>
+        </div>
+        <div class="col-md-6" id="banner-col2">
+            <img class="img-fluid rounded mx-5 d-block"
+                src="https://www.fastcomet.com/blog/wp-content/uploads/2022/08/node.js_vs_angular.png" alt="" />
+        </div>
+    </div>
+
+    <div class="row">
+        <h3 class="my-5" id="adduser">Add New User</h3>
+        <div class="col-6">
+
+
+            <form class="mt-10" method="post" action="/createuser">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        name="name">
+                    <div id="emailHelp" class="form-text">Enter Your full name</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        name="email">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Mobile Number</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        name="mobile">
+                    <div id="emailHelp" class="form-text">We'll never share your mobile with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('footer.ejs') %>

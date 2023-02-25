@@ -1,0 +1,49 @@
+<!-- slider -->
+
+<ngb-carousel class="slider">
+  <ng-template ngbSlide *ngFor="let image of images">
+    <div class="wrapper">
+      <img [src]="image.src" class="img-fluid" alt="Random first slide">
+    </div>
+    <div class="carousel-caption d-none d-md-block">
+      <h3>{{ image.title }}</h3>
+      <p>{{ image.short }}</p>
+    </div>
+  </ng-template>
+</ngb-carousel>
+
+<li class="nav-item cart btn btn-outline-success float-end m-5" routerLink="/cart">
+  <fa-icon [icon]="faCart"></fa-icon> {{totleProducts}}
+</li>
+
+<app-product-slider (childEvent)="totleProducts=$event"></app-product-slider>
+
+<!-- banner -->
+<div class="container" id="banner-container">
+  <div class="row">
+    <div class="col-md-6 p-5" style="position: relative;" id="banner-col">
+      <div class="d-flex align-items-center text-center flex-column">
+        <h3 class="fw-bold pt-5">
+          10 Fashion Outlets In Mumbai With The Best Health Safeguards
+        </h3>
+
+        <p>
+          Clicking add to cart might be fun while being stuck indoors, but for those of us who thrive on the traditional retail experience… It’s still a poor second.
+        </p>
+
+        <div class="d-grid gap-2 d-md-flex justify-content-center">
+          <a class="btn btn-outline-danger" href="/" role="button">Shop Now</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6" id="banner-col2">
+      <img class="img-fluid rounded d-block"
+        src="../../../assets/slider4.avif" height=100% width="100%" alt="" />
+    </div>
+  </div>
+</div>
+
+<div class="container">
+    <app-contact></app-contact>
+
+</div>

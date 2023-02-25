@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="zippy">
+    <button class="btn btn-outline-primary ms-5" type="button" (click)="toggle()">Add New User </button>
+    <div [hidden]="visible">
+      <h3 class="my-5 fw-bold" id="adduser">Add New User</h3>
+  <div class="col-6">
+
+    <p *ngIf="msg" id="alert" class="alert alert-success">{{msg}}</p>
+
+    <form [formGroup]="userForm" (ngSubmit)="adduser(userForm.value)" class="mt-10" method="post">
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="name"
+          formControlName="name">
+        <div *ngIf="isSubmitted && f.name.errors">
+          <div *ngIf="f.name.errors['required']" class="form-text text-danger">
+            name is required*
+          </div>
+
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email"
+          formControlName="email">
+        <div *ngIf="isSubmitted && f.email.errors">
+          <div *ngIf="f.email.errors['required']" class="form-text text-danger">
+            email is required*
+          </div>
+          <div *ngIf="f.email.errors['email']" class="form-text text-danger">
+            enter valid email *
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Mobile Number</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="mobile"
+          formControlName="mobile">
+        <div *ngIf="isSubmitted && f.mobile.errors">
+          <div *ngIf="f.mobile.errors['required']" class="form-text text-danger">
+            mobile no is required*
+          </div>
+          <div *ngIf="f.mobile.errors['minlength'] || f.mobile.errors['maxlength']" class="form-text text-danger">
+            enter 10 digit mobile number*
+          </div>
+          <div *ngIf="f.mobile.errors['pattern']" class="form-text text-danger">
+            enter only digit*
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="password"
+          formControlName="password">
+        <div *ngIf="isSubmitted && f.password.errors">
+          <div *ngIf="f.password.errors['required']" class="form-text text-danger">
+            password is required*
+          </div>
+          <div *ngIf="f.password.errors['pattern']" class="form-text text-danger">
+            <li>
+              At least 1 Uppercase</li>
+            <li>
+              At least 1 Lowercase
+            </li>
+            <li>
+              At least 1 Number
+            </li>
+            <li>
+                At least 1 Symbol
+            </li>
+            <li>
+              Min 8 chars and Max 12 chars
+            </li>
+            
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+
+    </form>
+  </div>
+    </div>
+  </div>
+ 
+</div>

@@ -1,0 +1,95 @@
+<%- include('header.ejs') %>
+
+<!-- user data  -->
+<div class="container">
+    <div class="row">
+        <h3 class="my-5">User's List</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Mobile</th>
+                    <th scope="col">Password</th>
+                    <th scope="col" class="text-center">Action</th>
+
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+
+                <% for(var i=0; i<data.length; i++) {%>
+                <tr>
+                    <th scope="row">
+                        <%= data[i].id %>
+                    </th>
+                    <td>
+                        <%= data[i].name %>
+                    </td>
+                    <td>
+                        <%= data[i].email %>
+                    </td>
+                    <td>
+                        <%= data[i].mobile %>
+                    </td>
+                    <td>
+                        <%= data[i].password %>
+                    </td>
+                    <td class="text-center"><a class="btn btn-primary mx-3"
+                            href="/getsingleuser/<%= data[i].id %>">Edit</a><a class="btn btn-danger"
+                            href="/deleteuser/<%= data[i].id %>">Delete</a></td>
+                </tr>
+                <% } %>
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- <div class="row" id="edituser">
+            <h3 class="my-5" id="edituser1">Edit User</h3>
+            <div class="col-6">
+
+
+                <form class="mt-10" method="post" action="">
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="name" value="">
+                        <div id="emailHelp" class="form-text">Enter Your full name</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="email" value="">
+                        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Mobile Number</label>
+                        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            name="mobile" value="">
+                        <div id="emailHelp" class="form-text">We'll never share your mobile with anyone else.</div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="password" value="">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div> -->
+
+</div>
+
+
+
+<!-- <script>
+        function editUser(){
+            document.getElementById('edituser').style.display = 'block';
+            document.getElementById('edituser1').scrollIntoView();
+            
+
+        }
+    </script> -->
+
+<%- include('footer.ejs') %>

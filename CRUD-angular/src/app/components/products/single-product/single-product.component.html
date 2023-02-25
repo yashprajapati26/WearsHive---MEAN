@@ -1,0 +1,23 @@
+<div class="container my-5">
+    <h3 class="fw-bold">Product Page </h3>
+    <div class="row">
+        <div class="col-md-6">
+            <img class="p-3 rounded mx-auto d-block" src="{{imageUrl}}/{{productDetail.image.path}}" height="400px">
+        </div>
+        <div class="col-md-6 p-5">
+            <h1 class="fw-bold">{{productDetail.title}}</h1>
+            <h5>category : {{productDetail.category}}</h5>
+            <h3 class="fw-bold">RS : {{productDetail.price}} /-</h3>
+            <h4 class="mt-3">Description :</h4>
+            <p>{{productDetail.detailUrl}}</p>
+
+            <div class="action my-5">
+                <div *ngIf="!toggleBtn;else removeBtn" class="btn btn-success" (click)="addToCart(productDetail._id)">Add To Cart </div>
+                <ng-template #removeBtn>
+                    <div class="btn btn-danger" (click)="removeFromCart(productDetail._id)">Remove </div>
+                  </ng-template>
+                <div class="btn btn-outline-info mx-3"> <fa-icon [icon]="faHeart"></fa-icon></div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<button *ngIf="isadmin" class="btn btn-warning float-end mx-5" routerLink="/admin/add-product">+ Add Product</button>
+<button *ngIf="!isadmin" class="btn btn-warning float-end mx-5" routerLink="/add-product">+ Add Product</button>
+
+<h3 class="fw-bold m-5">Product List</h3>
+
+<form class="d-flex mx-2" role="search">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search"
+    [(ngModel)]="searchText">
+</form>
+
+<table id="example" class="table table-striped table-hover  my-5" style="width:100%">
+  <thead>
+    <tr>
+      <th (click)="sortTable('_id')">ID <i class="fa-solid fa-sort"></i></th>
+      <th (click)="sortTable('_id')">Image <i class="fa-solid fa-sort"></i></th>
+      <th (click)="sortTable('title')">Name</th>
+      <th (click)="sortTable('price')">Price</th>
+      <th (click)="sortTable('detailUrl')">Description</th>
+      <th class="text-center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <tr *ngFor="let item of items|orderBy: sortBy : asce | filter:searchText | paginate: {
+                                                                                itemsPerPage: pageSize,
+                                                                                currentPage: page,
+                                                                                totalItems: count }">
+      <td>{{item._id}}</td>
+      <td><img src="{{imageUrl}}/{{item.image.path}}" height="60px" width="60px"></td>
+      <td>{{item.title}}</td>
+      <td>{{item.price}}</td>
+      <td>{{item.detailUrl}}</td>
+      <td class="d-flex">
+        <a *ngIf="isadmin" class="btn btn-outline-primary mx-2" routerLink="/admin/edit-product/{{item._id}}">Edit</a>
+        <a *ngIf="!isadmin" class="btn btn-outline-primary mx-2" routerLink="/edit-product/{{item._id}}">Edit</a>
+        <a class="btn btn-outline-danger" (click)="deleteProduct(item._id)">Delete</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<div class="d-flex">
+  <pagination-controls (pageChange)="handlePageChange($event)"></pagination-controls>
+  <label class="ms-5 my-2">Page Size :</label>
+  <select (change)="handlePageSizeChange($event)">
+    <option *ngFor="let size of pageSizes" [ngValue]="size">
+      {{ size }}
+    </option>
+  </select>
+</div>

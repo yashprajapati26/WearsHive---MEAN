@@ -1,0 +1,17 @@
+<div class="container">
+
+<div class="table table-striped">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" *ngFor="let cols of tableColumns">{{cols}}</th>
+      <tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td *ngFor="let cols of tableColumns">{{user[cols]}}</td>
+      <tr>
+    </tbody>
+  </table>
+</div>
+</div>
