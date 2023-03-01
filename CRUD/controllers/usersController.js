@@ -2,6 +2,8 @@ const User = require("../models/user.model");
 const UserModel = require("../models/user.model");
 const mongoType = require('mongoose').Types;
 const bcrypt = require('bcrypt')
+const userValidation = require("../validators/users.validator")
+
 
 const getSingleUser = async (req, res) => {
     try {
@@ -34,9 +36,10 @@ const getUsers = async (req, res) => {
         const skipValue = req.params.page || 1;
         console.log("params : ", req.params)
         const users = await UserModel.find().limit(limitValue).skip(skipValue);
-
+        let totalData = await UserModel.find().count()
         // res.status(200).render('../templates/users', data)
         res.status(200).json({
+            totalData: totalData,
             data: users,
             status: "success"
         });
@@ -51,6 +54,16 @@ const getUsers = async (req, res) => {
 
 const createUser = async (req, res) => {
     try {
+        let payload = {
+            name: req.body.name,
+            email: req.body.email,
+            mobile: req.body.mobile,
+            password: req.body.password,
+        }
+
+        const { error } = userValidation.validation.validateAsync(payload)
+        console.log("error : ",error)
+        
         let user = new UserModel({
             name: req.body.name,
             email: req.body.email,

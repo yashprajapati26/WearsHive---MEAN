@@ -26,11 +26,12 @@ export class UserlistComponent {
   users: user[] = [];
   sortBy: string = "id";
   asce: number = 1;
+  totalData: any;
 
   isadmin: boolean = false;
 
   page: number = 1;
-  count = 0;
+  // count = 0;
   pageSize = 5;
   pageSizes = [5, 10, 15];
 
@@ -76,6 +77,7 @@ export class UserlistComponent {
       if (res) {
         console.log(res)
         this.users = res['data']
+        this.totalData = res['totalData']
       }
       else {
         console.log("error")

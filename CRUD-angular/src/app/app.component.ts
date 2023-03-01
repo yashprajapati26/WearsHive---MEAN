@@ -37,23 +37,7 @@ export class AppComponent {
   admin = false;
   users: any;
 
-
-  // tableColumns = [{
-  //     "Id": [1, 2, 3, 4, 5]
-  //   },
-  //   {
-  //     "name": ["yash", "a", "b", "c", "d"]
-  //   },
-  //   {
-  //     "mobile": []
-  //   },
-  //   {
-  //     "password": []
-  //   }
-  // ]
-
   tableColumns = ['_id', 'name' , 'mobile' ,'password']
-  totleProducts : any;
   constructor(private router: Router, private route:ActivatedRoute, private authservice: AuthserviceService, private userservice: UserserviceService) {}
 
   ngOnInit() {
@@ -65,20 +49,8 @@ export class AppComponent {
     };
     this.userservice.getUsers(params).subscribe((res: any) => {
       this.users = res['data']
-      console.log("-->", this.users)
-
     })
   }
-
-  // checkAdmin() {
-  //   if (this.authservice.isAdmin()) {
-  //     this.admin = true
-  //     return true
-  //   } else {
-  //     this.admin = false
-  //     return false
-  //   }
-  // }
 
   checkAdminUrl(){
     console.log(window.location.href)
@@ -88,7 +60,6 @@ export class AppComponent {
     }else{
       this.admin = false
     }
-
   }
 
 

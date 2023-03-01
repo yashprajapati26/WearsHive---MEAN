@@ -4,7 +4,7 @@ import {
 import {
   Injectable
 } from '@angular/core';
-import { Subject } from 'rxjs'
+import { Observable, Subject } from 'rxjs'
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -12,7 +12,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ProductserviceService {
 
-  public cartSubject = new Subject<string>();
+  public cartSubject = new Subject<number>();
 
 
   constructor(private http: HttpClient) { }
@@ -79,4 +79,10 @@ export class ProductserviceService {
   sendNotification(data: any) {
     this.cartSubject.next(data)
   }
+
+  reciveNotification():Observable<number>{
+    return this.cartSubject.asObservable();
+  }
+
+
 }

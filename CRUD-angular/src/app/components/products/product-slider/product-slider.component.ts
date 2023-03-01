@@ -37,7 +37,6 @@ export class ProductSliderComponent {
   cartList = [];
 
   @Output() childEvent = new EventEmitter
-  // @Input("totleProducts") totleProducts : number | undefined;
 
   constructor(private productservice: ProductserviceService, private toastrservice: ToastrService, private authservice: AuthserviceService) {
     let userId = this.getUserId()
@@ -81,15 +80,12 @@ export class ProductSliderComponent {
       this.SuccessToastr(res['msg'])
       this.totleProducts = res['totalData']
       this.childEvent.emit(this.totleProducts)
-      // this.CheckProduct(productId)
-      window.location.reload();
-      // this.ngOnInit()
+      // window.location.reload();
+    this.productservice.sendNotification(this.totleProducts);
+
     })
   }
-  // console.log("start..",this.cartProducts)
-  // this.cartProducts = this.cartProducts.filter((item:any) => item.productId._id !== productId) 
-  // console.log("end..",this.cartProducts)
-  
+ 
 
   removeFromCart(productId: any): void {
     let userId = this.getUserId()
@@ -102,9 +98,8 @@ export class ProductSliderComponent {
       this.SuccessToastr(res['msg'])
       this.totleProducts = res['totalData']
       this.childEvent.emit(this.totleProducts)
-      // this.CheckProduct(productId)
       // window.location.reload();
-      // this.ngOnInit()
+      this.productservice.sendNotification(this.totleProducts);
 
     })
   }

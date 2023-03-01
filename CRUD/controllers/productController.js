@@ -1,31 +1,31 @@
 const ProductModel = require("../models/product.model");
 const mongoType = require('mongoose').Types;
-const productValidator = require("../validators/product.validator");
+// const productValidator = require("../validators/product.validator");
 
 const createProduct = async (req, res) => {
     try {
         console.log(req.body)
         console.log(req.file)
 
-        const payload = {
-            title: req.body.title,
-            price: req.body.price,
-            qty: req.body.qty,
-            category: req.body.category,
-            image: {
-                data: req.file.path,
-                path: req.file.path,
-                contentType: req.file.mimetype
-            },
-            detailUrl: req.body.detailUrl
-        };
+        // const payload = {
+        //     title: req.body.title,
+        //     price: req.body.price,
+        //     qty: req.body.qty,
+        //     category: req.body.category,
+        //     image: {
+        //         data: req.file.path,
+        //         path: req.file.path,
+        //         contentType: req.file.mimetype
+        //     },
+        //     detailUrl: req.body.detailUrl
+        // };
 
-        const { error } = productValidator.validation.validateAsync(payload);
+        // const { error } = productValidator.validation.validateAsync(payload);
 
-        if (error) {
-            res.status(406);
-            return res.json({msg:'please enter validate data'})
-        } 
+        // if (error) {
+        //     res.status(406);
+        //     return res.json({msg:'please enter validate data'})
+        // } 
 
         let product = new ProductModel({
             title: req.body.title,
@@ -160,6 +160,8 @@ const deleteProduct = async (req, res) => {
         });
     }
 }
+
+ 
 
 
 module.exports = {

@@ -6,6 +6,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { NotFoundComponent } from './components/auth/not-found/not-found.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { HomeComponent } from './components/home/home.component';
 import { AddProductComponent } from './components/products/add-product/add-product.component';
@@ -90,7 +91,10 @@ const routes: Routes = [
     canActivateChild: [AdminGuard],
     loadChildren: () => import('./components/admin/admin.module').then(m => m.AdminModule)
   },
- 
+  {
+    path: 'checkout',
+    component: CheckoutComponent
+  },
   {
     path: '**',
     component: NotFoundComponent

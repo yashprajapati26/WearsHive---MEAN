@@ -30,7 +30,7 @@ export class AddProductComponent {
   isSubmitted: boolean = false;
   file: any | undefined;
   formData = new FormData();
-
+  subCategory:any;
 
   productForm = new FormGroup({
     title: new FormControl("", Validators.required),
@@ -41,9 +41,14 @@ export class AddProductComponent {
     detailUrl: new FormControl("", [Validators.required, Validators.minLength(10)])
   })
 
-  constructor(private route: ActivatedRoute, private router: Router, private productservice: ProductserviceService) {}
+  constructor(private route: ActivatedRoute, private router: Router, private productservice: ProductserviceService) {
+    this.productservice.getSubCategorys().subscribe((res:any)=>{
+      this.subCategory  = res['subcategory']
+    })
+  }
 
   ngOnInit() {
+    
     this.id = this.route.snapshot.params['id'];
     this.isEdit = this.id;
     if (this.isEdit) {

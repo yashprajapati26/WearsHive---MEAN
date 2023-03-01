@@ -17,6 +17,7 @@ import { AdminNavigationComponent } from './admin-navigation/admin-navigation.co
 import { AdminRoutingModule } from './admin.routing.module';
 import { TableGridComponent } from './table-grid/table-grid.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
         MatMenuModule,
         AdminRoutingModule,
         FontAwesomeModule,
+        NgxPaginationModule,
 
 
     ],

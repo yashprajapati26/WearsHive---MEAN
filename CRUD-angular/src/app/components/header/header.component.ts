@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { faCoffee, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { AuthserviceService } from '../auth/authservice.service';
+import { ProductserviceService } from '../products/productservice.service';
   
 
 @Component({
@@ -15,12 +16,15 @@ export class HeaderComponent {
   faCart = faShoppingCart;
   isLogin:boolean = false;
   searchKey:String | undefined;
-  totalItem:number = 0
+  totleProducts:number = 0
 
-  constructor(private authservice:AuthserviceService, private router:Router){}
+  constructor(private authservice:AuthserviceService, private router:Router, private productservice: ProductserviceService){}
 
   ngOnInit(){
     this.isLogin = this.authservice.isLoggedIn()
+    this.productservice.reciveNotification().subscribe((res)=>{
+      this.totleProducts = res;
+    })
   }
 
   logout(){
@@ -32,5 +36,7 @@ export class HeaderComponent {
 
     })
   }
+
+  
  
 }

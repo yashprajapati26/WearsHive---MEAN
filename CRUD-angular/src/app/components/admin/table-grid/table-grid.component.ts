@@ -6,11 +6,23 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./table-grid.component.css']
 })
 export class TableGridComponent {
+
 @Input('tableCols') tableCols : any;
 @Input('tableData') tableData : any;
-constructor(){}
 
-ngOnInit(){
+page:number = 1;
+pageSize:number = 5;
+totalRecords:number = 30;
 
+constructor(){
+  // this.totalRecords = this.tableData
 }
+
+ngOnInit(){}
+
+
+handlePageChange(event: number): void {
+  this.page = event;
+}
+
 }

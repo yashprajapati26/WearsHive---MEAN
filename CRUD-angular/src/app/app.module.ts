@@ -46,6 +46,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoggedInAuthGuard } from './guards/logged-in-auth.guard';
 import { CategoryListComponent } from './components/products/manage-category/category-list/category-list.component';
 import { AddCategoryComponent } from './components/products/manage-category/add-category/add-category.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 
@@ -73,6 +74,7 @@ import { AddCategoryComponent } from './components/products/manage-category/add-
     TableComponent,
     CategoryListComponent,
     AddCategoryComponent,
+    CheckoutComponent,
 
   ],
   imports: [
