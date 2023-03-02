@@ -14,7 +14,7 @@ export class TableGridComponent {
 @Input('pageSize') pageSize:any;
 @Input('totalRecords') totalRecords :any;
 
-ParamData = {'page': 1 , 'size':5}
+ParamData = {'page': 1 , 'size':5 }
 @Output('ParamsDataEvent') ParamsDataEvent = new EventEmitter<any>();
 
 
@@ -27,6 +27,7 @@ handlePageChange(event: number): void {
   this.page = event;
   console.log("event : ",event)
   this.ParamData['page'] = event
+  this.ParamData['size'] = this.pageSize
   this.ParamsDataEvent.emit(this.ParamData)
 }
 

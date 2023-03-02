@@ -1,4 +1,3 @@
-const User = require("../models/user.model");
 const UserModel = require("../models/user.model");
 const mongoType = require('mongoose').Types;
 const bcrypt = require('bcrypt')
@@ -32,12 +31,14 @@ const getSingleUser = async (req, res) => {
 const getUsers = async (req, res) => {
     try {
         // adding pagination 
-        const limitValue = req.params.pageSize || 5;
-        const skipValue = req.params.page || 1;
         console.log("params : ", req.params)
+
+        const limitValue = req.params.pageSize || 5;
+        var skip = req.params.page || 0;
+
+        const skipValue = limitValue * skip
         const users = await UserModel.find().limit(limitValue).skip(skipValue);
         let totalData = await UserModel.find().count()
-        // res.status(200).render('../templates/users', data)
         res.status(200).json({
             totalData: totalData,
             data: users,
@@ -61,14 +62,16 @@ const createUser = async (req, res) => {
             password: req.body.password,
         }
 
-        const { error } = userValidation.validation.validateAsync(payload)
-        console.log("error : ",error)
-        
+        const {
+            error
+        } = userValidation.validation.validateAsync(payload)
+        console.log("error : ", error)
+
         let user = new UserModel({
             name: req.body.name,
             email: req.body.email,
             mobile: req.body.mobile,
-            password: await bcrypt.hash(req.body.password,10),
+            password: await bcrypt.hash(req.body.password, 10),
             token: "",
             usertype: "customer"
         })

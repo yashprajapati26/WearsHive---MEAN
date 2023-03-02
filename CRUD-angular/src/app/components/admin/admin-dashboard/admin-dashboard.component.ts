@@ -24,7 +24,7 @@ export class AdminDashboardComponent {
   pageSize:number = 5;
   totalRecords:any;
 
-  params = {'page':this.page - 1,'size':this.pageSize}
+  params = {'page':this.page,'size':this.pageSize}
   
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -56,6 +56,7 @@ export class AdminDashboardComponent {
   }
 
   fatchData(){
+    this.params['page'] = this.params['page'] - 1
     this.userservice.getUsers(this.params).subscribe((res:any)=>{
       this.data = res['data']
       this.totalRecords = parseInt(res['totalData'])

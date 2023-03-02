@@ -58,8 +58,9 @@ const getProducts = async (req, res) => {
     try {
         // adding pagination 
         const limitValue = req.params.pageSize || 4;
-        const skipValue = req.params.page || 0;
+        var skip = req.params.page || 0;
 
+        const skipValue = limitValue*skip
         console.log("L:S", limitValue, skipValue)
 
         let products = await ProductModel.find().limit(limitValue).skip(skipValue).populate('category')
