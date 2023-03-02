@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-table-grid',
@@ -10,19 +10,24 @@ export class TableGridComponent {
 @Input('tableCols') tableCols : any;
 @Input('tableData') tableData : any;
 
-page:number = 1;
-pageSize:number = 5;
-totalRecords:number = 30;
+@Input('page') page:any;
+@Input('pageSize') pageSize:any;
+@Input('totalRecords') totalRecords :any;
 
-constructor(){
-  // this.totalRecords = this.tableData
-}
+ParamData = {'page': 1 , 'size':5}
+@Output('ParamsDataEvent') ParamsDataEvent = new EventEmitter<any>();
+
+
+constructor(){}
 
 ngOnInit(){}
 
 
 handlePageChange(event: number): void {
   this.page = event;
+  console.log("event : ",event)
+  this.ParamData['page'] = event
+  this.ParamsDataEvent.emit(this.ParamData)
 }
 
 }

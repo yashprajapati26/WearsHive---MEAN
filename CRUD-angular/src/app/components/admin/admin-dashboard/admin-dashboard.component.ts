@@ -20,7 +20,11 @@ export class AdminDashboardComponent {
     {"Head" : "UserType", 'Field' : 'usertype' }
   ];
   data:any;
+  page:number = 1;
+  pageSize:number = 5;
+  totalRecords:any;
 
+  params = {'page':this.page - 1,'size':this.pageSize}
   
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -43,15 +47,25 @@ export class AdminDashboardComponent {
   );
 
   constructor(private breakpointObserver: BreakpointObserver, private userservice:UserserviceService) {
-    var params = {'page':0,'size':10}
-    this.userservice.getUsers(params).subscribe((res:any)=>{
-      this.data = res['data']
-      console.log("data:",this.data)
-    })
+    this.fatchData()
   }
 
 
   ngOnInit(){
     
+  }
+
+  fatchData(){
+    this.userservice.getUsers(this.params).subscribe((res:any)=>{
+      this.data = res['data']
+      this.totalRecords = parseInt(res['totalData'])
+      console.log("data:",this.data)
+    })
+  }
+
+  changeParams(params:any){
+    console.log("params---",params)
+    this.params = params
+    this.fatchData()
   }
 }

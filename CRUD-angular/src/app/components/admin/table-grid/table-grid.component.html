@@ -1,5 +1,6 @@
 <div class="container tableBg">
   <div class="table table-striped">
+    {{pageSize}}- {{page}} - {{totalRecords}}
     <table class="table">
       <thead>
         <th>No</th>
@@ -7,8 +8,11 @@
       </thead>
       <tbody>
         <tr scope="col"
-          *ngFor="let data of tableData | paginate : {itemsPerPage: 5, currentPage: page, totalItems: 20 }; let no=index" >
-          <td>{{no+1}}</td>
+          *ngFor="let data of tableData |paginate: {
+            itemsPerPage: pageSize,
+            currentPage: page,
+            totalItems: totalRecords }; let no=index">
+          <td>{{pageSize * page - pageSize + no+1}}</td>
           <td *ngFor="let head of tableCols">{{data[head.Field]}}</td>
         </tr>
       </tbody>
