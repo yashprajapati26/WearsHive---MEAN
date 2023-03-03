@@ -1,14 +1,14 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
-
+{{ParamData | json}}
   <app-table-grid 
   [tableCols]="cols" 
   [tableData]="data" 
-  [totalRecords]="totalRecords" 
-  [pageSize]="pageSize"
-  [page]="page"
+  [ParamData] = "ParamData"
   (ParamsDataEvent)="changeParams($event)">
   </app-table-grid>
+
+
 
   <mat-grid-list cols="2" rowHeight="350px">
     <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">

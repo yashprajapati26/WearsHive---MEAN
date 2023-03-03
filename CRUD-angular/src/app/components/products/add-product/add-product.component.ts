@@ -13,6 +13,7 @@ import {
 import {
   first
 } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import {
   ProductserviceService
 } from '../productservice.service';
@@ -31,6 +32,8 @@ export class AddProductComponent {
   file: any | undefined;
   formData = new FormData();
   subCategory:any;
+  imageUrl = environment.api_url
+  
 
   productForm = new FormGroup({
     title: new FormControl("", Validators.required),
@@ -55,12 +58,13 @@ export class AddProductComponent {
       this.productservice.getProduct(this.id)
         .pipe(first())
         .subscribe((res: any) => {
+          this.imageUrl = this.imageUrl +"/"+res['product'].image.path
           console.log(res)
           this.productForm.patchValue({
             title: res['product'].title,
             price: res['product'].price,
             qty: res['product'].qty,
-            category: res['product'].category.SubCategoryName,
+            category: res['product'].category._id,
             detailUrl: res['product'].detailUrl,
             image : res['product'].image  
           })
@@ -92,7 +96,7 @@ export class AddProductComponent {
       if (this.productForm.valid) {
         this.productservice.editProduct(this.id, data).subscribe((res: any) => {
           this.msg = res['msg']
-          this.router.navigate(["/product-list"])
+          // this.router.navigate(["/product-list"])
 
         })
       }

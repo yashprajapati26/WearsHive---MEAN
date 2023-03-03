@@ -17,7 +17,7 @@ import { UserlistComponent } from './components/users/userlist/userlist.componen
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/auth/not-found/not-found.component';
-import { orderByPipe, ProductListComponent } from './components/products/product-list/product-list.component';
+import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { SingleProductComponent } from './components/products/single-product/single-product.component';
 // search module
 import { LayoutModule } from '@angular/cdk/layout';
@@ -37,16 +37,16 @@ import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 import { AboutComponent } from './components/about/about.component';
 import { AdminModule } from './components/admin/admin.module';
 import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 import { TableComponent } from './components/common/table/table.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { AddProductComponent } from './components/products/add-product/add-product.component';
+import { AddCategoryComponent } from './components/products/manage-category/add-category/add-category.component';
+import { CategoryListComponent } from './components/products/manage-category/category-list/category-list.component';
 import { ProductSliderComponent } from './components/products/product-slider/product-slider.component';
 import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggedInAuthGuard } from './guards/logged-in-auth.guard';
-import { CategoryListComponent } from './components/products/manage-category/category-list/category-list.component';
-import { AddCategoryComponent } from './components/products/manage-category/add-category/add-category.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
 
 
 
@@ -64,7 +64,6 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     NotFoundComponent,
     ProductListComponent,
     SingleProductComponent,
-    orderByPipe,
     SearchByNamePipe,
     AddProductComponent,
     ProductSliderComponent,

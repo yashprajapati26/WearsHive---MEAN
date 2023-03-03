@@ -58,7 +58,7 @@
         <label class="form-label">Image</label>
         <input type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="image"
           formControlName="image" (change)="imageSelect($event)">
-        <img *ngIf="isEdit" class="p-3 rounded-3" src="../../../../assets/slider1.jpg" height="100px">
+        Currunt image : <img *ngIf="isEdit" class="p-3 rounded-3" [src]="imageUrl" height="100px">
         <div *ngIf="isSubmitted && f.image.errors" id="emailHelp" class="form-text text-danger">Image is required*
         </div>
       </div>

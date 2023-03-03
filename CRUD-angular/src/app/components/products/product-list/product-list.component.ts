@@ -51,8 +51,8 @@ export class ProductListComponent {
   imageUrl = environment.api_url
   page:number = 1;
   count:number = 0;
-  pageSize:number = 5;
-  pageSizes = [5, 10, 15];
+  pageSize:number = 3;
+  pageSizes = [3, 5, 10, 15];
 
   
   constructor(private productservice:ProductserviceService, private authservice:AuthserviceService){}
@@ -67,6 +67,7 @@ export class ProductListComponent {
     let params = this.getRequestParams(this.page, this.pageSize);
     this.productservice.getProductList(params).subscribe((res:any)=>{
       this.items = res['products']
+      this.count = res['totalData']
       console.log(this.items)
     })
   

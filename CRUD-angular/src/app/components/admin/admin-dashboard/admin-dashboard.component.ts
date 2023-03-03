@@ -19,13 +19,14 @@ export class AdminDashboardComponent {
     {"Head" : "Password", 'Field' : 'password' },
     {"Head" : "UserType", 'Field' : 'usertype' }
   ];
-  data:any;
-  page:number = 1;
-  pageSize:number = 5;
-  totalRecords:any;
-
-  params = {'page':this.page,'size':this.pageSize}
   
+  
+  data:any;
+ 
+
+  ParamData = {'page':1,"size":5,"totalRecords":0,'sortBy':'_id', 'sort_direction':1 }
+ 
+ 
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
@@ -51,22 +52,21 @@ export class AdminDashboardComponent {
   }
 
 
-  ngOnInit(){
-    
-  }
+  ngOnInit(){}
 
   fatchData(){
-    this.params['page'] = this.params['page'] - 1
-    this.userservice.getUsers(this.params).subscribe((res:any)=>{
+    let params = {'page': this.ParamData['page']-1,'size':this.ParamData['size']}
+    this.userservice.getUsers(params).subscribe((res:any)=>{
       this.data = res['data']
-      this.totalRecords = parseInt(res['totalData'])
+      this.ParamData['totalRecords'] =  parseInt(res['totalData'])
       console.log("data:",this.data)
     })
   }
 
-  changeParams(params:any){
-    console.log("params---",params)
-    this.params = params
+  changeParams(ParamData:any){
+    console.log("params---",ParamData)
+    this.ParamData['size'] = ParamData['size']
+    this.ParamData['page'] = ParamData['page']
     this.fatchData()
   }
 }

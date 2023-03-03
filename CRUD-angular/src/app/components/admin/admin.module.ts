@@ -11,13 +11,14 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { orderByPipe } from '../products/product-list/product-list.component';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
 import { AdminNavigationComponent } from './admin-navigation/admin-navigation.component';
 import { AdminRoutingModule } from './admin.routing.module';
 import { TableGridComponent } from './table-grid/table-grid.component';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
         AdminDashboardComponent,
         AdminHomeComponent,
         TableGridComponent,
+        orderByPipe,
     ],
     imports: [
         CommonModule,
@@ -43,6 +45,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 
     ],
+    exports:[ orderByPipe ],
     providers: [],
     
 })

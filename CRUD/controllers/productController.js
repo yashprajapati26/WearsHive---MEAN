@@ -64,9 +64,12 @@ const getProducts = async (req, res) => {
         console.log("L:S", limitValue, skipValue)
 
         let products = await ProductModel.find().limit(limitValue).skip(skipValue).populate('category')
+        let totalData = await ProductModel.find().count()
+
+
         let data = {
             products: products,
-            totalData: products.length,
+            totalData: totalData,
             "msg": "success"
         }
         console.log(data)

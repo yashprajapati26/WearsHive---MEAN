@@ -37,6 +37,7 @@ const getUsers = async (req, res) => {
         var skip = req.params.page || 0;
 
         const skipValue = limitValue * skip
+        
         const users = await UserModel.find().limit(limitValue).skip(skipValue);
         let totalData = await UserModel.find().count()
         res.status(200).json({
