@@ -35,4 +35,11 @@ export class AuthserviceService{
     }
   }
 
+  getToken(): string | null {
+    if (localStorage.getItem('token')) {
+      return localStorage.getItem('token');
+    }
+    return null;
+  }
+
 }

@@ -14,7 +14,7 @@ import { AdduserComponent } from './components/users/adduser/adduser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
 import { UserlistComponent } from './components/users/userlist/userlist.component';
 // add new modules
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NotFoundComponent } from './components/auth/not-found/not-found.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
@@ -47,6 +47,7 @@ import { ProductSliderComponent } from './components/products/product-slider/pro
 import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggedInAuthGuard } from './guards/logged-in-auth.guard';
+import { AuthinterceptorService } from './interceptor/authinterceptor.service';
 
 
 
@@ -103,7 +104,11 @@ import { LoggedInAuthGuard } from './guards/logged-in-auth.guard';
 
 
   ],
-  providers: [AuthGuard,AdminGuard,LoggedInAuthGuard,Title],
+  providers: [{
+    provide:HTTP_INTERCEPTORS,
+    useClass:AuthinterceptorService,
+    multi:true
+  },AuthGuard,AdminGuard,LoggedInAuthGuard,Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

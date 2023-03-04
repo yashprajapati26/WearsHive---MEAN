@@ -2,3 +2,7 @@
     border-left: 6px solid green;
     height: 500px;
   }
+
+input, select{
+  margin: 7px 0px 7px 0px;
+}
