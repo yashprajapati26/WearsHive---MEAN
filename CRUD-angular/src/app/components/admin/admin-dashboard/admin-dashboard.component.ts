@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { UserserviceService } from '../../users/userservice.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -16,7 +17,7 @@ export class AdminDashboardComponent {
     {"Head" : "Name", 'Field' : 'name' },
     {"Head" : "Email", 'Field' : 'email' },
     {"Head" : "Mobile No", 'Field' : 'mobile' },
-    {"Head" : "Password", 'Field' : 'password' },
+    // {"Head" : "Password", 'Field' : 'password' },
     {"Head" : "UserType", 'Field' : 'usertype' }
   ];
   
@@ -25,7 +26,18 @@ export class AdminDashboardComponent {
  
 
   ParamData = {'page':1,"size":5,"totalRecords":0,'sortBy':'_id', 'sort_direction':1 }
- 
+  actionArray = [
+    {
+      icon: 'Edit',
+      function: 'editEntity',
+      class: 'btn btn-outline-primary'
+    },
+    {
+      icon: 'Delete',
+      function: 'deleteEntity',
+      class: 'btn btn-outline-danger'
+    },
+  ];
  
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
@@ -37,7 +49,6 @@ export class AdminDashboardComponent {
           { title: 'Card 4', cols: 1, rows: 1 }
         ];
       }
-
       return [
         { title: 'Card 1', cols: 2, rows: 1 },
         { title: 'Card 2', cols: 1, rows: 1 },
@@ -47,7 +58,7 @@ export class AdminDashboardComponent {
     })
   );
 
-  constructor(private breakpointObserver: BreakpointObserver, private userservice:UserserviceService) {
+  constructor(private breakpointObserver: BreakpointObserver, private userservice:UserserviceService, private router:Router) {
     this.fatchData()
   }
 
@@ -69,4 +80,24 @@ export class AdminDashboardComponent {
     this.ParamData['page'] = ParamData['page']
     this.fatchData()
   }
+
+  editAction(data:any){
+    console.log("edit called",data)
+    const id = data['_id']
+    this.router.navigate([`admin/edit-user/${id}`]);
+    // this.userservice.editUser(data['_id'])
+  }
+
+  deleteAction(data:any){
+    console.log("delete called",data)
+    const id = data['_id']
+    this.userservice.deleteUser(id).subscribe((res: any) => {
+      alert("User " + id + " deleted sucessfully")
+      // this.router.navigate(["user-list"])
+      window.location.reload();
+    })
+
+
+  }
+
 }

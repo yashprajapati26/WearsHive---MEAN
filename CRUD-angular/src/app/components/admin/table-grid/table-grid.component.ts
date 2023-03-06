@@ -23,9 +23,25 @@ export class TableGridComponent {
   'sort_direction': 1,
 }
 
+@Input('actionArray') actionArray = [
+  {
+    icon: 'edit',
+    function: 'editEntity',
+    class: 'btn btn-outline-primary'
+  },
+  {
+    icon: 'delete',
+    function: 'deleteEntity',
+    class: 'btn btn-outline-danger'
+  }
+]
 
 // ParamData = {'page': 1 , 'size':5 }
 @Output('ParamsDataEvent') ParamsDataEvent = new EventEmitter<any>();
+
+@Output('deleteActionEvent') deleteActionEvent = new EventEmitter<any>();
+
+@Output('editActionEvent') editActionEvent = new EventEmitter<any>();
 
 // sortBy:any = '_id'; 
 // asce:any = 1;
@@ -50,5 +66,28 @@ sort(sortBy:any){
   this.ParamsDataEvent.emit(this.ParamData)
 
 }
+
+deleteEntity(row: any) {
+  this.deleteActionEvent.emit(row);
+}
+
+editEntity(row: any) {
+  this.editActionEvent.emit(row);
+}
+
+detectActionEvent(actionType:string,data:any){
+  console.log(data['_id'])
+  console.log(actionType)
+  if(actionType=="editEntity"){
+    this.editEntity(data);
+  }
+  else if(actionType=="deleteEntity"){
+    this.deleteEntity(data);
+  }
+  else{
+    console.log("not defined")
+  }
+}
+
 
 }

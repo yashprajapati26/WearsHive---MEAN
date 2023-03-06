@@ -1,20 +1,25 @@
 <div class="container tableBg">
   <div class="table table-striped">
-    {{ParamData.size}}- {{ParamData.page}} - {{ParamData.totalRecords}}
     <table class="table">
       <thead>
         <th>No</th>
         <th scope="col" *ngFor="let head of tableCols" (click)="sort(head.Field)">{{head.Head}}</th>
+        <th class="text-center">Action</th>
       </thead>
       <tbody>
-        <tr scope="col"
-          *ngFor="let data of tableData| orderBy : ParamData.sortBy : ParamData.sort_direction |paginate: {
+        <tr scope="col" *ngFor="let data of tableData| orderBy : ParamData.sortBy : ParamData.sort_direction |paginate: {
             itemsPerPage: ParamData.size,
             currentPage: ParamData.page,
             totalItems: ParamData.totalRecords }; let no=index">
           <td>{{ParamData.size * ParamData.page - ParamData.size + no+1}}</td>
           <td *ngFor="let head of tableCols">{{data[head.Field]}}</td>
+          <td>
+            <div class="d-flex">
+              <button *ngFor="let action of actionArray" (click)="detectActionEvent(action.function,data)"
+                class="{{action.class}} mx-1">{{action.icon}}</button></div>
+          </td>
         </tr>
+
       </tbody>
     </table>
     <div>

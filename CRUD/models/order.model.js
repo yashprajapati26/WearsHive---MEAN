@@ -6,8 +6,20 @@ const OrderSchema = new mongoose.Schema({
         ref : 'User',
         required: true
     },
-    
-
+    extraCharge:{
+        type:String,
+    },
+    orderAmount:{
+        type:String,
+    },
+    orderStatus:{
+        type:String,
+        default:"Pending"
+    },
+    orderAt:{
+        type: Date,
+        default: Date.now
+    },
 })
 
 const Order = mongoose.model('Order', OrderSchema);

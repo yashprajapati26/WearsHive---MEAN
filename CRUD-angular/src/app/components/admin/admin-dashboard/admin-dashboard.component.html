@@ -5,6 +5,9 @@
   [tableCols]="cols" 
   [tableData]="data" 
   [ParamData] = "ParamData"
+  [actionArray] = "actionArray"
+  (editActionEvent) = "editAction($event)"
+  (deleteActionEvent) = "deleteAction($event)"
   (ParamsDataEvent)="changeParams($event)">
   </app-table-grid>
 
