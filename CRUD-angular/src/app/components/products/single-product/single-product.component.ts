@@ -63,9 +63,6 @@ export class SingleProductComponent {
 
       })
     }
-
-   
-
   }
 
 
@@ -74,13 +71,14 @@ export class SingleProductComponent {
     var isPresent = this.cartProducts.find(function (el: any) {
       return el.productId._id === id
     }) !== undefined;
+    console.log("ispresent:",isPresent)
     return isPresent
   }
 
 
   getUserId() { 
-    let token = localStorage.getItem('token') || ''
-    if (token != '') {
+    let token = localStorage.getItem('token') || undefined
+    if (token) {
       const decodeToken = this.jwtHelper.decodeToken(token)
       let userId = decodeToken['user_id']
       return userId;
@@ -105,7 +103,7 @@ export class SingleProductComponent {
       this.toggleBtn = !this.toggleBtn
       this.totleProducts = res['totalData']
       this.childEvent.emit(this.totleProducts)
-      this.toggleBtn = this.CheckProduct(productId)
+      // this.toggleBtn = this.CheckProduct(productId)
     })
   }
 
@@ -119,12 +117,11 @@ export class SingleProductComponent {
     }
     this.productservice.removeFromCart(data).subscribe((res: any) => {
       // called toaster
+      this.toggleBtn = !this.toggleBtn
       this.SuccessToastr(res['msg'])
       this.totleProducts = res['totalData']
       this.childEvent.emit(this.totleProducts)
-      this.toggleBtn = this.CheckProduct(productId)
+      // this.toggleBtn = this.CheckProduct(productId)
     })
   }
-
-
 }
