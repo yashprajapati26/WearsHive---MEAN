@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ToastrService } from 'ngx-toastr';
 import { environment } from 'src/environments/environment';
@@ -20,7 +21,7 @@ export class CartComponent {
   NetTotle:number = 0;
 
 
-  constructor(private productservice:ProductserviceService, private toastrservice:ToastrService){}
+  constructor(private productservice:ProductserviceService, private toastrservice:ToastrService, private router:Router){}
 
   ngOnInit(){
     this.showCart()
@@ -66,6 +67,10 @@ export class CartComponent {
       window.location.reload();
 
     })
+  }
+
+  checkout(){
+    this.router.navigate(['checkout'])
   }
 
 }

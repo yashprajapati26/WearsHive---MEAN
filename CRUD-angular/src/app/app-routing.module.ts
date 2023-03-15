@@ -13,6 +13,7 @@ import { AddProductComponent } from './components/products/add-product/add-produ
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { ProductSliderComponent } from './components/products/product-slider/product-slider.component';
 import { SingleProductComponent } from './components/products/single-product/single-product.component';
+import { RxJSComponent } from './components/rx-js/rx-js.component';
 import { AdduserComponent } from './components/users/adduser/adduser.component';
 import { EdituserComponent } from './components/users/edituser/edituser.component';
 import { UserlistComponent } from './components/users/userlist/userlist.component';
@@ -94,6 +95,10 @@ const routes: Routes = [
   {
     path: 'checkout',
     component: CheckoutComponent
+  },
+  {
+    path: 'rxjs',
+    component: RxJSComponent
   },
   {
     path: '**',

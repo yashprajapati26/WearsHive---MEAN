@@ -7,6 +7,7 @@ const verifyToken = require("../middleware/middleware");
 const cartController = require('../controllers/cartController');
 const multer = require('multer');
 const categoryController = require('../controllers/categoryController');
+const orderController = require('../controllers/orderController')
 
 const storage = multer.diskStorage({
 
@@ -58,5 +59,8 @@ router.get('/deleteProduct/:id', verifyToken, productController.deleteProduct);
 router.post('/cart/addtocart', cartController.addToCart);
 router.post('/cart/removefromcart', cartController.removeFromCart);
 router.get("/cart/getcartitems/:id", cartController.getCartItems);
+
+//checkout
+router.post('/checkout',orderController.createOrder);
 
 module.exports = router;

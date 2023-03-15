@@ -48,6 +48,7 @@ import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { LoggedInAuthGuard } from './guards/logged-in-auth.guard';
 import { AuthinterceptorService } from './interceptor/authinterceptor.service';
+import { RxJSComponent } from './components/rx-js/rx-js.component';
 
 
 
@@ -75,6 +76,7 @@ import { AuthinterceptorService } from './interceptor/authinterceptor.service';
     CategoryListComponent,
     AddCategoryComponent,
     CheckoutComponent,
+    RxJSComponent,
 
   ],
   imports: [
