@@ -49,6 +49,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { LoggedInAuthGuard } from './guards/logged-in-auth.guard';
 import { AuthinterceptorService } from './interceptor/authinterceptor.service';
 import { RxJSComponent } from './components/rx-js/rx-js.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 
 
@@ -102,7 +103,9 @@ import { RxJSComponent } from './components/rx-js/rx-js.component';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    AdminModule
+    AdminModule,
+    DragDropModule,
+    
 
 
   ],

@@ -29,10 +29,6 @@ app.set('view engine', 'ejs');
 app.set('templates', 'templates');
 
 
-
-
-
-
 app.get('/home', verifyToken, (req, res) => {
     // res.send("Home Page")
     res.render('../templates/index');

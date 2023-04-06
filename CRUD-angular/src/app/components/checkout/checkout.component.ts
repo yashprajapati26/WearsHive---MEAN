@@ -55,18 +55,17 @@ export class CheckoutComponent {
     })
   }
 
-  onSubmit(data:any){
+  checkout(data:any){
     console.log(data)
-    let formData = new FormData();
-    formData.append('userId',this.userId);
-    formData.append('data', data);
-    formData.append('NetTotle',this.NetTotle);
-    formData.append('TotalAmount',this.TotalAmount);
-    formData.append('extraCharges',this.extraCharges);
-    formData.append('cartItems',this.cartItems);
-
-    console.log(formData)
-    this.checkoutservice.doCheckout(formData).subscribe((res:any)=>{
+    let formdata = {
+      'data' : data,
+      'userId' : this.userId,
+      'netTotal' : this.NetTotle,
+      'extraCharges' : this.extraCharges,
+      'cartItems' : this.cartItems 
+    }
+    console.log(formdata)
+    this.checkoutservice.doCheckout(formdata).subscribe((res:any)=>{
       console.log(res)
     })
 

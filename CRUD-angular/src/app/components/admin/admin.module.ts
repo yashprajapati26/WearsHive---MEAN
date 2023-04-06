@@ -20,6 +20,7 @@ import { AdminNavigationComponent } from './admin-navigation/admin-navigation.co
 import { AdminRoutingModule } from './admin.routing.module';
 import { TableGridComponent } from './table-grid/table-grid.component';
 
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 @NgModule({
     declarations: [
@@ -42,6 +43,7 @@ import { TableGridComponent } from './table-grid/table-grid.component';
         AdminRoutingModule,
         FontAwesomeModule,
         NgxPaginationModule,
+        DragDropModule
 
 
     ],

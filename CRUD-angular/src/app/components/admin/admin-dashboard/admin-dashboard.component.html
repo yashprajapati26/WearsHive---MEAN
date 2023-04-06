@@ -3,22 +3,22 @@
 <h1 class="mat-h1">Dashboard</h1>
 
 <div class="row my-5">
-  <mat-card class="col-3 m-auto">
-    <mat-card-title class="m-3">Users</mat-card-title>
-    <mat-card-content>10</mat-card-content>
+  <mat-card class="col-3 m-auto bg-primary">
+    <mat-card-title class="m-3 text-center">Users</mat-card-title>
+    <mat-card-content class="fs-5 fw-bold text-center">10</mat-card-content>
   </mat-card>
-  <mat-card class="col-3 m-auto">
-    <mat-card-title class="m-3">Products</mat-card-title>
-    <mat-card-content>10</mat-card-content>
+  <mat-card class="col-3 m-auto bg-success">
+    <mat-card-title class="m-3 text-center">Products</mat-card-title>
+    <mat-card-content class="fs-5 fw-bold text-center">10</mat-card-content>
   </mat-card>
-  <mat-card class="col-3 m-auto">
-    <mat-card-title class="m-3">Orders</mat-card-title>
-    <mat-card-content>10</mat-card-content>
+  <mat-card class="col-3 m-auto bg-warning">
+    <mat-card-title class="m-3 text-center">Orders</mat-card-title>
+    <mat-card-content class="fs-5 fw-bold text-center">10</mat-card-content>
   </mat-card>
 </div>
 
 <mat-card>
-  <mat-card-title>User Details</mat-card-title>
+  <mat-card-title class="m-3">User Details</mat-card-title>
   <mat-card-content>
     <app-table-grid 
     [tableCols]="cols" 
@@ -34,9 +34,95 @@
 </mat-card>
   
 
+<h1 class="m-5">Example of Drang & Drop</h1>
 
-
- 
-
+<div cdkDropList class="example-list"  (cdkDropListDropped)="drop($event)">
+  <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
 </div>
+
+<h1 class="m-5">diffrent List </h1>
+
+
+<div class="example-container">
+  <h2>To do</h2>
+
+  <div
+    cdkDropList
+    #todoList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[doneList]"
+    class="example-list"
+    (cdkDropListDropped)="drop2($event)">
+    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2>Done</h2>
+
+  <div
+    cdkDropList
+    #doneList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[todoList]"
+    class="example-list"
+    (cdkDropListDropped)="drop2($event)">
+    <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+  </div>
+</div>
+
+
+
+
+
+
+
+<!-- 
+
+<h1 class="m-5">Drang and drop with 3 List </h1>
+
+
+<div class="example-container">
+  <h2>1st List</h2>
+
+  <div
+    cdkDropList
+    #firstList="cdkDropList"
+    [cdkDropListData]="todo"
+    [cdkDropListConnectedTo]="[secondList]"
+    class="example-list"
+    (cdkDropListDropped)="drop2($event)">
+    <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+  </div>
+</div>
+
+<div class="example-container">
+  <h2>2nd List</h2>
+
+  <div
+    cdkDropList
+    #secondList="cdkDropList"
+    [cdkDropListData]="done"
+    [cdkDropListConnectedTo]="[firstList]"
+    class="example-list"
+    (cdkDropListDropped)="drop2($event)">
+    <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+  </div>
+</div>
+
+  <div class="example-container">
+    <h2>3rd List</h2>
+  
+    <div
+      cdkDropList
+      #thirdList="cdkDropList"
+      [cdkDropListData]="doneCopy"
+      class="example-list"
+      (cdkDropListDropped)="drop2($event)">
+      <div class="example-box" *ngFor="let item of doneCopy" cdkDrag>{{item}}</div>
+    </div>
+
+  </div> -->
+</div>
+
 
